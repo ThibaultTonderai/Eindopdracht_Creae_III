@@ -1,4 +1,3 @@
-// baledsgngusfdh
 var apiKey = "4oJkrNdyujNYxs9FGSBpw5SvaAeqXEUr2E3WjBhT";
 $(document).ready(function() {
     $.ajax({
