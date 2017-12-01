@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <script src="../jquery-3.2.1.min.js"></script>
+    <script src="../src/script/app.js"></script>
+</head>
+<body>
+
+<main class="content">
+
+    <form action="" class="form">
+
+        <div class="input input_radio">
+            <input type="radio" class="input_toggle" name="HexOrPic" value="hex"> Hexadecimal
+            <input type="radio" class="input_toggle" name="HexOrPic" value="pic"> Picture
+        </div>
+
+
+        <div class="input" id="div_hex_txt" style="display: none;">
+            <input type="text" class="input_text" id="input_text_hex">
+            <label for="input_text_pic" class="input_label"> Hex Value</label>
+        </div>
+
+
+        <div id="div_pic" style="display: none;">
+            <div class="input" id="div_pic_rad">
+                <input type="radio" name="FileOrUrl" class="input_toggle" value="url"> URL
+                <input type="radio" name="FileOrUrl" class="input_toggle" value="file"> FILE
+            </div>
+
+            <div class="input" id="div_pic_fil" style="display: none;">
+                <input type="file" class="input_file" id="input_file" accept="Image/*" >
+                <label for="input_file" class="input_label"></label>
+            </div>
+
+            <div class="input" id="div_pic_txt" style="display: none;">
+                <input type="text" class="input_text" id="input_text_pic">
+                <label for="input_text_pic" class="input_label"></label>
+            </div>
+        </div>
+        <div class="input" style="display: none;" id="submit">
+            <input type="submit" class="input_submit" id="input_submit">
+        </div>
+
+    </form>
+</main>
+
+</body>
+</html>
