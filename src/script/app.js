@@ -235,7 +235,6 @@ function displaySchemes(result) {
 function displayColors(value, index) {
     //$("#square_" + index).append($("<p/>").innerText= "Pallette" + index).addClass("description");    NOT NICE
     $.each(value.colors, function (i, va) {
-        console.log(va);
         $("#square_" + index).append($("<div/>")
             .append("<div/>")
             .addClass('color_square')
@@ -267,6 +266,8 @@ function getInformationAboutPalette() {
         }
     });
 }
+
+
 
 
 function hideForm(){
