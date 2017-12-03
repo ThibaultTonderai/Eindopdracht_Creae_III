@@ -246,12 +246,13 @@ function displayColors(value, index) {
 
 $(document).ajaxStart(function () {
     $(".cssload-wrap").show();
+    hideForm();
 });
 
 $(document).ajaxStop(function () {
     $(".cssload-wrap").hide();
     getInformationAboutPalette();
-    hideForm();
+
 
 });
 
