@@ -1,0 +1,70 @@
+.form{
+  width:20%;
+  margin:auto;
+}
+
+.input{
+  margin-top: 10%;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  background-color: $accent;
+  color: white;
+  transition:width 2s;
+  -moz-transition:width 2s; /* Firefox 4 */
+  -webkit-transition:width 2s; /* Safari and Chrome */
+  -o-transition:width 2s; /* Opera */
+}
+
+.input_button{
+  background-color: $accent;
+  width:100%;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.input_button_pic{
+  background-color: $accent-dark;
+}
+
+.input_file{
+  opacity:0;
+}
+
+.input-file-label{
+  display: block;
+  padding: 14px 40px;
+  background: $accent;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+input[type=file]{
+  background-color: $accent;
+  cursor: inherit;
+  display: block;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.input_button:hover{
+  background: $accent-dark;
+}
+.input-file-label:hover{
+  background-color: $accent-dark;
+}
+.input_text:focus{
+  background-color: $accent-dark;
+}

@@ -1,0 +1,35 @@
+.colors{
+  width:80%;
+
+}
+
+.result{
+  width:80%;
+  margin:auto;
+}
+.palette{
+  background: $white;
+  padding:10px;
+  display: flex;
+  height: 50px;
+  flex-wrap:nowrap;
+  margin-bottom: 10px;
+}
+
+.palette:hover{
+  background: $accent;
+}
+
+
+.color_square{
+  width:50%;
+
+}
+
+.description{
+  color: $white;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  display: block;
+}
