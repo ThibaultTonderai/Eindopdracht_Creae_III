@@ -271,8 +271,8 @@ function getInformationAboutPalette() {
 function goBack(){
     $('.back').show();
     $('.back').click(function () {
-        //$(".colors").animate({left:"600px"},5000).animate({right:"600px"}, 5000);
-        $(".palette").stop().fadeOut(1600, "linear" ,function () {
+        $(".colors").stop().fadeOut("slow", "linear" ,function () {
+            $(".colors").css("display: none");
             $(".colors").empty();
             $(".form").stop().fadeIn("slow", "linear");
             $(".back").hide();
@@ -283,7 +283,9 @@ function goBack(){
 
 
 function hideForm(){
-    $(".form").hide();
+    $(".form").fadeOut("slow","linear", function () {
+        $(".cssload-wrap").fadeIn("slow", "linear");
+    });
 }
 
 //endregion
@@ -333,7 +335,6 @@ function getTags(scheme){
 
 //region AJAX
 $(document).ajaxStart(function () {
-    $(".cssload-wrap").show();
     hideForm();
 });
 
