@@ -133,7 +133,7 @@ function getColorScheme(color) {
     console.log(color);
     $.ajax({
         type: "GET",
-        url: "http://www.colr.org/json/search_by_colors?colors=" + color,
+        url: "https://cors-anywhere.herokuapp.com/http://www.colr.org/json/search_by_colors?colors=" + color,
         dataType: "json",
         success: function (data) {
             console.log(data);
