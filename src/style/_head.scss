@@ -1,16 +1,33 @@
-h1{
+h1 {
   font-size: 7rem;
   font-weight: 200;
   text-align: center;
 }
 
-h2{
+h2 {
   color: $grey-xxx-light;
   font-size: 1.6rem;
   font-weight: 100;
   text-align: center;
 }
-.head{
+
+.title{
+  text-align: center;
+}
+
+.head {
   margin-top: 2%;
   margin-bottom: 6%;
+  align-items:center;
+}
+
+.back {
+  float: left;
+  margin-left: 3%;
+  position: absolute;
+  display: none;
+}
+
+.back--link_image {
+  width: 80px;
 }

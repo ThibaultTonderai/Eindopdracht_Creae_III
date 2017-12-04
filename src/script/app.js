@@ -64,12 +64,15 @@ function toggleButtonUrlOrFile() {
 
 //endregion
 
+
+
 //region Validation
 function validateInput() {
 
     $(inputhex).on("input", function () {
         var hex = $(inputhex).val();
         var isOk = /^[0-9A-F]{6}$/i.test(hex);
+        showColorBackground(isOk);
         toggleSubmit(isOk);
     });
 
@@ -84,6 +87,14 @@ function validateInput() {
         var isOk = validate_fileupload(file.name);
         toggleSubmit(isOk);
     });
+
+}
+
+function showColorBackground(isOk) {
+    if(isOk)
+        $(inputhex).css({"background-color":"#"+$(inputhex).val()});
+    else
+        $(inputhex).removeAttr("style");
 
 }
 
@@ -125,6 +136,7 @@ function getVisibleValue() {
 }
 
 //endregion
+
 
 
 //region API Calls
@@ -210,6 +222,7 @@ function getImageColorsById(id) {
 //endregion
 
 
+
 //region Display Methods
 function makeSquares(colors) {
     displaySchemes(colors);
@@ -234,7 +247,6 @@ function displaySchemes(result) {
 
 
 function displayColors(value, index) {
-    //$("#square_" + index).append($("<p/>").innerText= "Pallette" + index).addClass("description");    NOT NICE
     $.each(value.colors, function (i, va) {
         $("#square_" + index).append($("<div/>")
             .append("<div/>")
@@ -243,18 +255,6 @@ function displayColors(value, index) {
     })
 }
 
-
-$(document).ajaxStart(function () {
-    $(".cssload-wrap").show();
-    hideForm();
-});
-
-$(document).ajaxStop(function () {
-    $(".cssload-wrap").hide();
-    getInformationAboutPalette();
-
-
-});
 
 function getInformationAboutPalette() {
     $(".palette").click(function () {
@@ -268,7 +268,18 @@ function getInformationAboutPalette() {
     });
 }
 
+function goBack(){
+    $('.back').show();
+    $('.back').click(function () {
+        //$(".colors").animate({left:"600px"},5000).animate({right:"600px"}, 5000);
+        $(".palette").stop().fadeOut(1600, "linear" ,function () {
+            $(".colors").empty();
+            $(".form").stop().fadeIn("slow", "linear");
+            $(".back").hide();
+        })
 
+    })
+}
 
 
 function hideForm(){
@@ -276,6 +287,8 @@ function hideForm(){
 }
 
 //endregion
+
+
 
 //region Helpers
 
@@ -314,4 +327,22 @@ function getTags(scheme){
     return x;
 }
 
+//endregion
+
+
+
+//region AJAX
+$(document).ajaxStart(function () {
+    $(".cssload-wrap").show();
+    hideForm();
+});
+
+$(document).ajaxStop(function () {
+    $(".cssload-wrap").hide();
+    $(".colors").fadeIn("slow", "linear");
+    getInformationAboutPalette();
+    goBack();
+
+
+});
 //endregion
