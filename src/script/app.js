@@ -128,6 +128,7 @@ function getVisibleValue() {
 
 
 //region API Calls
+//
 
 function getColorScheme(color) {
     console.log(color);
