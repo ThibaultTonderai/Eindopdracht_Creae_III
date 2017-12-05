@@ -249,9 +249,9 @@ function displaySchemes(result) {
 function displayColors(value, index) {
     $.each(value.colors, function (i, va) {
         $("#square_" + index).append($("<div/>")
-            .append("<div/>")
             .addClass('color_square')
-            .css({'background-color': '#' + va}))
+            .css({'background-color': '#' + va}
+            ).append($("<p/>").addClass("color_val").text("Hex: #" + va)))
     })
 }
 
@@ -259,18 +259,29 @@ function displayColors(value, index) {
 function getInformationAboutPalette() {
     $(".palette").click(function () {
         if ($(this).height() === 100) {
-            $(this).css({"height": "50px"});
+            //$(this).css({"height": "50px"});
+            $(this).animate({height: 50}, 400, function () {
+                $(this).find("div").find("p").fadeOut("slow", "linear");
+            });
         }
         else {
-            $(".palette").css({"height": "50px"});
-            $(this).css({"height": "100px"})
+            $('.palette').each(function (index, val) {
+                if($(this).height() === 100){
+                    $(this).animate({height: 50}, 400);
+                }
+            });
+            $(".color_val").fadeOut("slow", "linear");
+            $(this).animate({height: 100}, 400 , function () {
+                $(this).find("div").find("p").fadeIn("slow", "linear");
+            });
+
         }
     });
 }
 
 function goBack(){
-    $('.back').show();
-    $('.back').click(function () {
+    $('.back').show()
+    .click(function () {
         $(".colors").stop().fadeOut("slow", "linear" ,function () {
             $(".colors").css("display: none");
             $(".colors").empty();
@@ -322,9 +333,10 @@ function makeQuery(color) {
 }
 
 function getTags(scheme){
+    if(scheme.tags.length === 0) return "# palette";
     var x = "";
     $.each(scheme.tags, function (index , value) {
-        x +=" #" + value.name + "   "
+        x +=" #" + value.name + "   ";
     });
     return x;
 }

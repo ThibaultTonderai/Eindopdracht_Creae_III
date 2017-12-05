@@ -13,9 +13,8 @@
   padding:10px;
   display: flex;
   height: 50px;
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
   margin-bottom: 10px;
-
 }
 
 .palette:hover{
@@ -24,7 +23,7 @@
 
 
 .color_square{
-  width:50%;
+  flex: 1 1 auto;
 
 }
 
@@ -35,4 +34,12 @@
   font-size: 1.2rem;
   display: block;
   font-weight: 300;
+}
+
+.color_val{
+  color: $white;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 100;
+  display: none;
 }
