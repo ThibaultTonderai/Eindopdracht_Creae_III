@@ -65,7 +65,6 @@ function toggleButtonUrlOrFile() {
 //endregion
 
 
-
 //region Validation
 function validateInput() {
 
@@ -91,8 +90,8 @@ function validateInput() {
 }
 
 function showColorBackground(isOk) {
-    if(isOk)
-        $(inputhex).css({"background-color":"#"+$(inputhex).val()});
+    if (isOk)
+        $(inputhex).css({"background-color": "#" + $(inputhex).val()});
     else
         $(inputhex).removeAttr("style");
 
@@ -136,7 +135,6 @@ function getVisibleValue() {
 }
 
 //endregion
-
 
 
 //region API Calls
@@ -222,7 +220,6 @@ function getImageColorsById(id) {
 //endregion
 
 
-
 //region Display Methods
 function makeSquares(colors) {
     displaySchemes(colors);
@@ -232,18 +229,17 @@ function displaySchemes(result) {
     $.each(result.schemes, function (index, value) {
         $(".colors").append(
             $("<p/>").addClass("description").text(getTags(value)),
-            $("<div/>")
-                .attr("id", "square_" + index)
-                .addClass("palette")
-        );
+            $("<div/>").addClass("box").append(
+                $("<img/>").addClass("shuffle").attr("src", "./media/shuffle.png"),
+                $("<div/>")
+                    .attr("id", "square_" + index)
+                    .addClass("palette"),
+                $("<img/>").addClass("pdf").attr("src", "./media/PDF.png")
+            ));
         displayColors(value, index);
         console.log(value);
     })
 }
-
-
-
-
 
 
 function displayColors(value, index) {
@@ -259,48 +255,52 @@ function displayColors(value, index) {
 function getInformationAboutPalette() {
     $(".palette").click(function () {
         if ($(this).height() === 100) {
-            //$(this).css({"height": "50px"});
             $(this).animate({height: 50}, 400, function () {
                 $(this).find("div").find("p").fadeOut("slow", "linear");
+                $(this).next("img").hide();
+                $(this).prev("img").hide();
             });
         }
         else {
             $('.palette').each(function (index, val) {
-                if($(this).height() === 100){
+                if ($(this).height() === 100) {
                     $(this).animate({height: 50}, 400);
+                    $(this).next("img").hide();
+                    $(this).prev("img").hide();
                 }
             });
             $(".color_val").fadeOut("slow", "linear");
-            $(this).animate({height: 100}, 400 , function () {
+            $(this).animate({height: 100}, 400, function () {
                 $(this).find("div").find("p").fadeIn("slow", "linear");
+                $(this).next("img").show();
+                $(this).prev("img").show();
             });
 
         }
     });
 }
 
-function goBack(){
+function goBack() {
     $('.back').show()
-    .click(function () {
-        $(".colors").stop().fadeOut("slow", "linear" ,function () {
-            $(".colors").css("display: none");
-            $(".colors").empty();
-            $(".form").stop().fadeIn("slow", "linear");
-            $(".back").hide();
-        })
+        .click(function () {
+            $(".colors").stop().fadeOut("slow", "linear", function () {
+                $(".colors").css("display: none");
+                $(".colors").empty();
+                $(".form").stop().fadeIn("slow", "linear");
+                $(".back").hide();
+            })
 
-    })
+        })
 }
 
 
-function hideForm(){
-    $(".form").fadeOut("slow","linear", function () {
+function hideForm() {
+    $(".form").fadeOut("slow", "linear", function () {
         $(".cssload-wrap").fadeIn("slow", "linear");
     });
 }
 
 //endregion
-
 
 
 //region Helpers
@@ -332,11 +332,11 @@ function makeQuery(color) {
     return query;
 }
 
-function getTags(scheme){
-    if(scheme.tags.length === 0) return "# palette";
+function getTags(scheme) {
+    if (scheme.tags.length === 0) return "# palette";
     var x = "";
-    $.each(scheme.tags, function (index , value) {
-        x +=" #" + value.name + "   ";
+    $.each(scheme.tags, function (index, value) {
+        x += " #" + value.name + "   ";
     });
     return x;
 }
@@ -355,7 +355,57 @@ $(document).ajaxStop(function () {
     $(".colors").fadeIn("slow", "linear");
     getInformationAboutPalette();
     goBack();
+    clickPdf();
+    clickShuffle();
 
 
 });
+
 //endregion
+
+
+function clickShuffle(){
+    $(".shuffle").click(function () {
+        if($(this).next().css("flex-direction") === "row-reverse")
+            $(this).next().css({"flex-direction": "row"});
+        else
+        $(this).next().css({"flex-direction": "row-reverse"});
+    })
+}
+
+
+function clickPdf() {
+    $(".pdf").click(function () {
+        var array = [];
+        var palette = $(this).prev('div');
+        palette.children().each(function (index, value) {
+            array.push($(value).css("background-color"))
+        });
+        generatePdf(array);
+    })
+}
+
+
+function generatePdf(array) {
+    var doc = new jsPDF();
+    doc.setFont("Verdana");
+    doc.text('Color', 100, 10);
+    doc.text("By Thibault Derieuw", 85, 20);
+    var yCor = 30;
+    array.forEach(function (value) {
+
+        var x = value.split("(")[1].split(")")[0];
+        var rgb = x.split(",");
+        var b = rgb.map(function (x) {
+            x = parseInt(x).toString(16);
+            return (x.length === 1) ? "0" + x : x;
+        });
+        b = "#" + b.join("");
+        doc.setFillColor(parseInt(rgb[0].trim()), parseInt(rgb[1].trim()), parseInt(rgb[2].trim()));
+        doc.rect(10, yCor, 20, 20, 'F');
+        doc.text("RGB Value: " + x, 40, yCor + 8);
+        doc.text("Hexadecimal value: " + b, 40, yCor + 16);
+        yCor += 30;
+    });
+    doc.save('palette.pdf');
+}
