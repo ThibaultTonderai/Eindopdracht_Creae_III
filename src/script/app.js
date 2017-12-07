@@ -1,5 +1,4 @@
 "use strict";
-var API_KEY_COL = "4oJkrNdyujNYxs9FGSBpw5SvaAeqXEUr2E3WjBhT";
 var API_KEY_PIC = "acc_dc8ba00c2d274a1";
 var API_SECRET_PIC = "7340b7dea32cc987905db48c575efd11";
 
@@ -33,11 +32,15 @@ function toggleButtonHexOrPic() {
         hexOrPic = !hexOrPic;
         if (hexOrPic) {
             $("#btn_hex_pic").addClass("input_button_pic").val("Picture");
+            $("#input_label_id").text("Please insert a picture by link or by file.");
+            console.log("bla");
             $(divpic).show();
             $(divhex).hide();
         }
         else {
             $("#btn_hex_pic").removeClass("input_button_pic").val("Hex");
+            $("#input_label_id").text("Please put in a hexadecimal value.");
+
             $(divpic).hide();
             $(divhex).show();
         }

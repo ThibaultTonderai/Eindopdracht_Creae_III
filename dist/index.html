@@ -20,45 +20,44 @@
     </div>
 
     <div class="back">
-            <img class="back--link_image" src="media/Back-Icon.png" alt="" width="80px">
+        <img class="back--link_image" src="media/Back-Icon.png" alt="" width="80px">
     </div>
 </header>
 <main class="content">
     <section class="form">
         <div class="input">
-            <!--test-->
+        <div class="input-button">
+            <label class="input_label" id="input_label_id">Please put in a hexadecimal color value.</label>
+            <input type="submit" class="input_button" value="Hex" id="btn_hex_pic">
+        </div>
+
+        <div class="input-text" id="div_hex_txt">
+            <label for="input_text_pic" class="input_label"></label>
+            <input type="text" class="input_text" id="input_text_hex" placeholder="#:">
+        </div>
+
+
+        <div id="div_pic" style="display: none;">
+
             <div class="input-button">
                 <label class="input_label"></label>
-                <input type="submit" class="input_button" value="Hex" id="btn_hex_pic">
+                <input type="submit" class="input_button" value="Url" id="btn_url_file">
             </div>
 
-            <div class="input-text" id="div_hex_txt">
+            <div class="input-file" id="div_pic_fil" style="display: none;">
+                <input type="file" class="input_file" id="input_file" accept="Image/*">
+                <label for="input_file" class="input-file-label">Upload an Image</label>
+            </div>
+
+            <div class="input-text" id="div_pic_txt">
                 <label for="input_text_pic" class="input_label"></label>
-                <input type="text" class="input_text" id="input_text_hex" placeholder="Hex value">
+                <input type="text" class="input_text" id="input_text_pic" placeholder="Url-example.jpg/.png">
+
             </div>
-
-
-            <div id="div_pic" style="display: none;">
-
-                <div class="input-button">
-                    <label class="input_label"></label>
-                    <input type="submit" class="input_button" value="Url" id="btn_url_file">
-                </div>
-
-                <div class="input-file" id="div_pic_fil" style="display: none;">
-                    <input type="file" class="input_file" id="input_file" accept="Image/*">
-                    <label for="input_file" class="input-file-label">Upload an Image</label>
-                </div>
-
-                <div class="input-text" id="div_pic_txt">
-                    <label for="input_text_pic" class="input_label"></label>
-                    <input type="text" class="input_text" id="input_text_pic" placeholder="Url">
-
-                </div>
-            </div>
-            <div class="input-btn" style="display: none;" id="submit">
-                <input type="submit" class="input_button" id="input_submit" value="Generate Palletes ">
-            </div>
+        </div>
+        <div class="input-btn" style="display: none;" id="submit">
+            <input type="submit" class="input_button" id="input_submit" value="Generate Palletes ">
+        </div>
         </div>
     </section>
 
