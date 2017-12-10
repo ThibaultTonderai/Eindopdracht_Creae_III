@@ -1,6 +1,6 @@
 "use strict";
-var API_KEY_PIC = "acc_dc8ba00c2d274a1";
-var API_SECRET_PIC = "7340b7dea32cc987905db48c575efd11";
+var API_KEY_PIC = "acc_c6274a775e513a3";
+var API_SECRET_PIC = "3c00b5e6fe90ec044779c04c65137519";
 
 var divpic = "#div_pic";
 var divhex = "#div_hex_txt";
